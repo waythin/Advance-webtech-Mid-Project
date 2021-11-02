@@ -14,15 +14,16 @@ class CreateSeekersTable extends Migration
     public function up()
     {
         Schema::create('seekers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name',50);
-            $table->string('username',50);
-            $table->string('email',50);
-            $table->string('phone',50);
-            $table->string('gender',50);
-            $table->string('dob',50);
-            $table->string('nid',50);
-            $table->string('password',50);
+            $table->increments('Seeker_id');
+            $table->string('Name',50);
+            $table->string('Username',50);
+            $table->string('Email',50);
+            $table->string('Phone',50);
+            $table->string('Gender',50);
+            $table->string('Dob',50);
+            $table->string('NID',50);
+            $table->string('Picture',50);
+            $table->string('Password',50);
             $table->timestamps();
         });
     }

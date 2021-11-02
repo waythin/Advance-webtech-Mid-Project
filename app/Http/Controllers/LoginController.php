@@ -31,14 +31,14 @@ class LoginController extends Controller
 
       
 
-        $seeker = Seeker::where('username',  $request->username)->where('password',(  $request->password))->first();
+        $seeker = Seeker::where('Username',  $request->username)->where('Password',(  $request->password))->first();
 
         if(!empty($seeker))
         {
-            if($request->username==$seeker->username && $request->password==$seeker->password)
+            if($request->username==$seeker->Username && $request->password==$seeker->Password)
             {
-                $request->session()->put('user',$seeker->username);
-                return redirect()->route('sdash');
+                $request->session()->put('user',$seeker->Username);
+                return redirect()->route('joblist');
                 
             }
         }

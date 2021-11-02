@@ -19,22 +19,28 @@
     </div>
     <ul class="nav navbar-nav">
       <li ><a href="{{route('dashboard') }}">Dashboard</a></li>
-
+      <li ><a href="{{route('joblist') }}">Job List</a></li>
       @if(Session::has('user'))
-      <li ><a href="{{route('sdash') }}">Seeker Dashboard</a></li>
+      <li ><a href="{{route('applied_job_list') }}">Applied Jobs</a></li>
       @endif
-      <li ><a href="#">Job List</a></li>
+      
 
      
     </ul>
     <ul class="nav navbar-nav navbar-right">
+
+    @if(Session::has('user'))
     <li><a href="{{route('profile') }}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="{{route('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+
+    @else
       <li><a href="{{route('signup') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 
 
       <li><a href="{{route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      @endif
 
-      <li><a href="{{route('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+     
     </ul>
   </div>
 </nav>

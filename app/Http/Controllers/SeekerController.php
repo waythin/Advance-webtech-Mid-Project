@@ -22,7 +22,7 @@ class SeekerController extends Controller
  
         [
             'name'=>'required|min:4|max:15',
-            'username'=>'required|min:4|max:10',
+            'username'=>'required|min:4|max:10|unique:App\Models\Seeker,Username',
             'email'=>'required|email',
             'phone'=>'required|digits:11',
             'gender'=>'required',
@@ -55,18 +55,19 @@ class SeekerController extends Controller
         );
 
         $var = new Seeker();
-        $var->name = $request->name;
-        $var->username = $request->username;
-        $var->email = $request->email;
-        $var->phone = $request->phone;
-        $var->gender = $request->gender;
-        $var->dob = $request->dob;
-        $var->nid = $request->nid;
-        $var->password= $request->password_confirmation;
+        $var->Name = $request->name;
+        $var->Username = $request->username;
+        $var->Email = $request->email;
+        $var->Phone = $request->phone;
+        $var->Gender = $request->gender;
+        $var->Dob = $request->dob;
+        $var->NID = $request->nid;
+        $var->Picture = '/images/empty.jpg';
+        $var->Password= $request->password_confirmation;
         $var->save();
 
         // return 'Registration Successful!';
-        return redirect()->route('dashboard');
+        return redirect()->route('login');
     }
 
     // seeker dashboard / profile / edit!!!
@@ -77,13 +78,12 @@ class SeekerController extends Controller
 
     public function profile(){
         $seeker = Seeker::where('username',Session()->get('user'))->first();
-       // return($juser->email);
         return view('seeker.profile')->with('seeker', $seeker);
     }
 
     public function edit_profile(Request $request){
         $username = $request->username;
-        $seeker = Seeker::where('username',$username)->first();
+        $seeker = Seeker::where('Username',$username)->first();
         return view('seeker.edit_profile')->with('seeker', $seeker);
     }
 
@@ -97,9 +97,9 @@ class SeekerController extends Controller
             'phone'=>'required|digits:11',
             'gender'=>'required',
             'dob'=>'required',
-            'nid'=>'required|digits:10',
-            'password'=>'required|min:5|max:15|confirmed',
-            'password_confirmation'=>'required'
+            'nid'=>'required|digits:10'
+            // 'password'=>'required|min:5|max:15|confirmed',
+            // 'password_confirmation'=>'required'
         ],
 
         [
@@ -116,30 +116,43 @@ class SeekerController extends Controller
             'nid.required'=>'NID is required!',
             'nid.digits'=>'The number is less or more than 10 digits, please enter valid phone number!',
             'email.email'=>'Please enter valid email address!',
-            'gender.required'=>'Gender is requried!',
-            'password.required'=>'Password is required!',
-            'password.min'=>'Password must be more than 4 characters!',
-            'password.max'=>'Password must be less than 16 characters!',
-            'password_confirmation.required'=>'This field is required!'
+            'gender.required'=>'Gender is requried!'
+            // 'password.required'=>'Password is required!',
+            // 'password.min'=>'Password must be more than 4 characters!',
+            // 'password.max'=>'Password must be less than 16 characters!',
+            // 'password_confirmation.required'=>'This field is required!'
         ]
         );
  
         
 
-        $var = Seeker::where('username',$request->username)->first();
-        $var->name = $request->name;
-        $var->username = $request->username;
-        $var->email = $request->email;
-        $var->phone = $request->phone;
-        $var->gender = $request->gender;
-        $var->dob = $request->dob;
-        $var->nid = $request->nid;
-        $var->password= $request->password_confirmation;
+        $var = Seeker::where('Username',$request->username)->first();
+        $var->Name = $request->name;
+        $var->Username = $request->username;
+        $var->Email = $request->email;
+        $var->Phone = $request->phone;
+        $var->Gender = $request->gender;
+        $var->Dob = $request->dob;
+        $var->NID = $request->nid;
+        $var->Picture = '';
+        // $var->Password= $request->password_confirmation;
         $var->save();
-        
 
-       
          return redirect()->route('profile');
+    }
+
+
+    public function change_picture(Request $request)
+    {
+        $validatedData = $request->validate([
+         'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+        $path = $request->file('image')->store('public/images');
+        $var = Seeker::where('Username',Session()->get('user'))->first();
+        $var->Picture= substr($path, 6, 3000);
+        $var->save();
+ 
+        return redirect()->route('profile');
     }
 
     

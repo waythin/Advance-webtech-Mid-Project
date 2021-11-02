@@ -2,5 +2,5 @@
 
 @section('content')
 
-    <h1>Welcome to JOB FOR ALL dashboard</h1>
+    <h1>Welcome to  dashboard</h1>
 @endsection 

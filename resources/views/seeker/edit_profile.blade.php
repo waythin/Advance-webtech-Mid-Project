@@ -93,28 +93,28 @@ a {
     <hr>
 
     <label for="name"><b>Name</b></label><br>
-    <input type="text" placeholder="Enter your Name" name="name" id="name" value="{{$seeker->name}}">
+    <input type="text" placeholder="Enter your Name" name="name" id="name" value="{{$seeker->Name}}">
     @error('name')
     <span class="textred"> {{$message}}</span>
     @enderror
     <br>
 
     <label for="username"><b>Username</b></label><br>
-    <input type="text" placeholder="Enter your Username" name="username" id="username" value="{{$seeker->username}}">
+    <input type="text" placeholder="Enter your Username" name="username" id="username" value="{{$seeker->Username}}">
     @error('username')
     <span class="textred"> {{$message}}</span>
     @enderror
     <br>
 
     <label for="email"><b>Email</b></label><br>
-    <input type="text" placeholder="Enter your Email" name="email" id="email" value="{{$seeker->email}}">
+    <input type="text" placeholder="Enter your Email" name="email" id="email" value="{{$seeker->Email}}">
     @error('email')
     <span class="textred"> {{$message}}</span>
     @enderror
     <br>
 
     <label for="phone"><b>Phone Number</b></label><br>
-    <input type="text" placeholder="Enter your phone number" name="phone" id="phone" value="{{$seeker->phone}}">
+    <input type="text" placeholder="Enter your phone number" name="phone" id="phone" value="{{$seeker->Phone}}">
     @error('phone')
     <span class="textred"> {{$message}}</span><br>
     @enderror
@@ -123,11 +123,11 @@ a {
 
     <label for="gender"><b>Gender</b></label>
     <br>
-    <input type="radio" id="male" name="gender"  value="male" @if ($seeker->gender == "male") checked @endif>
+    <input type="radio" id="male" name="gender"  value="male" @if ($seeker->Gender == "male") checked @endif>
     <label for="male">Male</label>
-    <input type="radio" id="female" name="gender"  value="female" @if ($seeker->gender == "female") checked @endif>
+    <input type="radio" id="female" name="gender"  value="female" @if ($seeker->Gender == "female") checked @endif>
     <label for="female">Female</label>
-    <input type="radio" id="other" name="gender" value="other" @if ($seeker->gender == "other") checked @endif>
+    <input type="radio" id="other" name="gender" value="other" @if ($seeker->Gender == "other") checked @endif>
     <label for="other">Other</label>
     @error('gender')
     <span class="textred"> {{$message}}</span>
@@ -136,7 +136,7 @@ a {
   
 
     <label for="dob"><b>Date Of Birth</b></label><br>
-    <input type="date" placeholder="Enter your date of birth" name="dob" id="dob" value="{{$seeker->dob}}">
+    <input type="date" placeholder="Enter your date of birth" name="dob" id="dob" value="{{$seeker->Dob}}">
     @error('dob')
     <span class="textred"> {{$message}}</span>
     @enderror
@@ -144,27 +144,15 @@ a {
 
 
     <label for="nid"><b>National ID</b></label><br>
-    <input type="text" placeholder="Enter your NID" name="nid" id="nid" value="{{$seeker->nid}}">
+    <input type="text" placeholder="Enter your NID" name="nid" id="nid" value="{{$seeker->NID}}">
     @error('nid')
     <span class="textred"> {{$message}}</span>
     @enderror
     <br>
 
 
-    <label for="password"><b>Password</b></label><br>
-    <input type="password" placeholder="Enter Password" name="password" id="password" value="{{$seeker->password}}">
-    @error('password')
-    <span class="textred"> {{$message}}</span>
-    @enderror
-    <br>
 
-    <label for="password_confirmation"><b>Confirm Password</b></label><br>
-    <input type="password" placeholder="Confirm Password" name="password_confirmation" id="password_confirmation" value="{{$seeker->password}}">
-    @error('password_confirmation')
-    <span class="textred"> {{$message}}</span>
-    @enderror
-    <br>
-
+    
     <button type="submit" class="registerbtn">UPDATE</button>
   </div>
   
